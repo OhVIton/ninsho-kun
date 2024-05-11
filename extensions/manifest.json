@@ -1,8 +1,8 @@
 {
-	"name": "タイトル",
+	"name": "認証くん",
 	"manifest_version": 3,
-	"version": "1.0",
-	"description": "説明",
+	"version": "0.1.0",
+	"description": "LMSの認証コード入力を自動化します",
 
 	"action": {
 		"default_popup": "./dist/index.html"
