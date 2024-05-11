@@ -23,8 +23,8 @@ const submitAuthCode = (authCode: string) => {
 
 (async () => {
   if (await isAuthCodeRequired()) {
-    // 10秒待機
-    await new Promise((resolve) => setTimeout(resolve, 10000));
+    // 12秒待機
+    await new Promise((resolve) => setTimeout(resolve, 12000));
 
     // 認証コードを取得して送信
     chrome.runtime.sendMessage(Message.GET_AUTH_CODE, (response) => {

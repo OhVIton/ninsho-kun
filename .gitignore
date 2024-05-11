@@ -526,3 +526,5 @@ extensions/dist/*
 extensions/content_scripts_*
 extensions/backgrounds_*
 ignore_dir/*
+
+.eslintcache
