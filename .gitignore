@@ -524,3 +524,4 @@ FodyWeavers.xsd
 
 extensions/dist/*
 extensions/content_scripts_*
+ignore_dir/*

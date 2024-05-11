@@ -1,0 +1,1 @@
+(()=>{"use strict";var e;!function(e){e[e.GET_AUTH_CODE=0]="GET_AUTH_CODE"}(e||(e={})),chrome.runtime.onMessage.addListener((function(o,n,t){var i;return!!(null===(i=n.tab)||void 0===i?void 0:i.id)&&(o===e.GET_AUTH_CODE&&t({authCode:"hogehogehoge"}),!0)}))})();

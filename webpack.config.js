@@ -4,7 +4,8 @@ const srcDir = path.join(__dirname, 'src');
 
 module.exports = {
   entry: {
-    content_scripts_test: path.join(srcDir, 'content_scripts/test.ts'),
+    content_scripts_authCode: path.join(srcDir, 'content_scripts/authCode.ts'),
+    backgrounds_background: path.join(srcDir, 'backgrounds/background.ts'),
   },
   output: {
     path: path.join(__dirname, './extensions'),
