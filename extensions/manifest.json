@@ -12,6 +12,10 @@
 		"activeTab"
 	],
 
+	"host_permissions": [
+		"https://script.google.com/*"
+	],
+
 	"web_accessible_resources": [
 		{
 		  "resources": [ "img/*" ],

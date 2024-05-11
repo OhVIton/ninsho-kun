@@ -1,18 +1,18 @@
 import { Message } from "../constants/messages";
 
+const fetchAuthCode = async () => {
+  const response = await fetch(
+    "https://script.google.com/macros/s/AKfycby93St3zB6fAmH1DDlOJ-eObK7Xc2U4QWlbPok-WLjbWWzWHeqz8ZpxO_LWpY3O3jB4/exec",
+  );
+  const data = await response.json();
+
+  return data.authCode;
+};
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  const tabId = sender.tab?.id;
-
-  if (!tabId) {
-    return false;
-  }
-
   switch (message) {
     case Message.GET_AUTH_CODE:
-      // TODO: Outlookのメールから認証コードを取得する処理を実装する
-      const authCode = "hogehogehoge";
-
-      sendResponse({ authCode });
+      fetchAuthCode().then((authCode) => sendResponse({ authCode }));
       break;
   }
 

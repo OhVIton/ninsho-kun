@@ -15,19 +15,24 @@ const isAuthCodeRequired = async () => {
 
 const submitAuthCode = (authCode: string) => {
   const inputElem = document.querySelector("#idToken1");
-  const formElem = document.forms[0];
+  const loginButton = document.querySelector<HTMLInputElement>("#idToken2_0");
 
   inputElem?.setAttribute("value", authCode);
-  formElem?.submit();
+  loginButton?.click();
 };
 
 (async () => {
   if (await isAuthCodeRequired()) {
-    // 認証コードを取得
-    const response = await chrome.runtime.sendMessage(Message.GET_AUTH_CODE);
-    const authCode = ((await response) as AuthCodeResponse).authCode;
+    // 10秒待機
+    await new Promise((resolve) => setTimeout(resolve, 10000));
 
-    // 認証コードを入力して送信
-    submitAuthCode(authCode);
+    // 認証コードを取得して送信
+    chrome.runtime.sendMessage(Message.GET_AUTH_CODE, (response) => {
+      const authCode = (response as AuthCodeResponse).authCode;
+      console.log(authCode);
+
+      // 認証コードを入力して送信
+      submitAuthCode(authCode);
+    });
   }
 })();
