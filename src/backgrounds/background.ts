@@ -1,9 +1,8 @@
 import { Message } from "../constants/messages";
+import { GAS_BACKEND_URL } from "../constants/scripts";
 
 const fetchAuthCode = async () => {
-  const response = await fetch(
-    "https://script.google.com/macros/s/AKfycby93St3zB6fAmH1DDlOJ-eObK7Xc2U4QWlbPok-WLjbWWzWHeqz8ZpxO_LWpY3O3jB4/exec",
-  );
+  const response = await fetch(GAS_BACKEND_URL);
   const data = await response.json();
 
   return data.authCode;

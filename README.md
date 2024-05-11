@@ -1,40 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 認証くん
 
-## Getting Started
+LMSログイン時の二要素認証を、自動で入力してくれるChrome拡張機能
 
-First, run the development server:
+# 導入方法
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 拡張機能のインストール
+
+node, npmをインストールし、
+
+```
+npm i
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+extensionsフォルダをchrome://extensionsのLoad unpackedより読み込ませてください
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## GASの認証
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+ブラウザ右上の拡張機能ボタン(なければ表示させる)を押して、「ここをクリックしてアカウントを設定する」を押下してください
+![popup]("images/popup.png")
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## メールの設定
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+自分の使っているメーラーの設定で「GAS」の認証に使ったGoogleアカウントのGmailに、ynu.ac.jpにくる「YNU情報基盤センター：認証コード送信」が件名に入ったメールを転送するようにしてください。  
+横国のOutlookはynu.jp内でしか転送できないので、ThunderbirdやMac標準のメーラーなどを使うといいと思います。
 
-## Learn More
+# 既知の問題
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-[ ] 認証がはねられると、認証コードが通らない  
+-[ ] メールを確認する時間を12秒にしているが、環境によって認証コードのタイミングがずれる
