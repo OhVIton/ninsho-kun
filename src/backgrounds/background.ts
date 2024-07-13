@@ -1,17 +1,22 @@
 import { Message } from "../constants/messages";
-import { GAS_BACKEND_URL } from "../constants/scripts";
+import { BACKEND_URL } from "../constants/scripts";
 
-const fetchAuthCode = async () => {
-  const response = await fetch(GAS_BACKEND_URL);
+const fetchAuthCode = async (after: number) => {
+  const response = await fetch(BACKEND_URL + "?after=" + after);
   const data = await response.json();
 
+  if (!data.authCode) {
+    throw new Error(Message.AUTH_CODE_NOT_FOUND);
+  }
   return data.authCode;
 };
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  switch (message) {
+  switch (message.message) {
     case Message.GET_AUTH_CODE:
-      fetchAuthCode().then((authCode) => sendResponse({ authCode }));
+      fetchAuthCode(message.after)
+        .then((authCode) => sendResponse({ authCode }))
+        .catch((error) => sendResponse({ error }));
       break;
   }
 
